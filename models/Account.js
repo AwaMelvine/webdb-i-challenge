@@ -10,9 +10,8 @@ module.exports = {
         }
     },
 
-    insert(account) {
-        return db('accounts')
-            .insert(account)
-            .then(([id]) => id);
+    async insert(account) {
+        const [id] = await db('accounts').insert(account);
+        return this.get(id);
     }
 }
