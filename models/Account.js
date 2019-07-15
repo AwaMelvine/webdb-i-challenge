@@ -13,5 +13,10 @@ module.exports = {
     async insert(account) {
         const [id] = await db('accounts').insert(account);
         return this.get(id);
+    },
+
+    async update(id, data) {
+        const count = await db('accounts').where('id', id).update(data);
+        return (count > 0 ? this.get(id) : null);
     }
 }
