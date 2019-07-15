@@ -18,5 +18,10 @@ module.exports = {
     async update(id, data) {
         const count = await db('accounts').where('id', id).update(data);
         return (count > 0 ? this.get(id) : null);
+    },
+
+    async remove(id) {
+        const count = await db('accounts').where('id', id).del();
+        return count;
     }
 }
